@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.spec.ECField;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import java.util.logging.Level;
@@ -28,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 class AppTest {
 
     private static Method mainMethod;
@@ -38,7 +40,7 @@ class AppTest {
 
     @BeforeAll
     static void setup() throws IOException, ClassNotFoundException, NoSuchMethodException {
-        JarInputStream jarStream = new JarInputStream(new FileInputStream("src/main/resources/suffixing.jar"));
+        JarInputStream jarStream = new JarInputStream(new FileInputStream("src/main/resources/Suffixing.jar"));
         Manifest mf = jarStream.getManifest();
         String mainClassName = mf.getMainAttributes().getValue("Main-Class");
         Class<?> mainClass = Class.forName(mainClassName);
@@ -47,8 +49,12 @@ class AppTest {
         appLogger = LogManager.getLogManager().getLogger("");
         appLogger.setLevel(Level.ALL);
 
+
         FileUtils.deleteDirectory(new File("src/test/resources/sandbox/config"));
+
+
         FileUtils.deleteDirectory(new File("src/test/resources/sandbox/cases"));
+
 
         FileUtils.copyDirectory(
                 new File("src/test/resources/reference/config"),
