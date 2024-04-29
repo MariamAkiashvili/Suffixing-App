@@ -40,7 +40,7 @@ class AppTest {
 
     @BeforeAll
     static void setup() throws IOException, ClassNotFoundException, NoSuchMethodException {
-        JarInputStream jarStream = new JarInputStream(new FileInputStream("src/main/resources/Suffixing.jar"));
+        JarInputStream jarStream = new JarInputStream(new FileInputStream("src/main/resources/suffixing.jar"));
         Manifest mf = jarStream.getManifest();
         String mainClassName = mf.getMainAttributes().getValue("Main-Class");
         Class<?> mainClass = Class.forName(mainClassName);
